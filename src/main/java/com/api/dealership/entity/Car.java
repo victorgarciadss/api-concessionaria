@@ -20,7 +20,7 @@ public class Car {
     private Integer launchYear;
     private Double price;
     private Integer potency;
-    private Integer soldAmount;
+    private Integer soldAmount = 0;
 
     public Car() {
 

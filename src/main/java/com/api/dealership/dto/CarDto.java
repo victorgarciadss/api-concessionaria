@@ -18,7 +18,6 @@ public class CarDto {
     
     private String color;
 
-    @NotBlank(message = "Insira um ano")
     @Digits(integer = 4, fraction = 0, message = "O Ano digitado deve ter 4 digitos")
     private Integer launchYear;
 

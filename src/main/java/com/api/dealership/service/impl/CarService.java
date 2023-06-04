@@ -2,6 +2,7 @@ package com.api.dealership.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +32,9 @@ public class CarService implements ICarService {
     @Transactional
     @Override
     public Car insertCar(CarDto carDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertCar'");
+        Car car = new Car();
+        BeanUtils.copyProperties(carDto, car);
+        return carRepository.save(car);
     }
 
     @Override
