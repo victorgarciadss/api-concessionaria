@@ -20,7 +20,7 @@ public class CarService implements ICarService {
 
     @Override
     public List<Car> getAll() {
-        return null;
+        return carRepository.findAll();
     }
 
     @Override

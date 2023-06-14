@@ -5,8 +5,9 @@ import org.springframework.beans.BeanUtils;
 import com.api.dealership.entity.Car;
 
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CarDto {
     
@@ -18,7 +19,8 @@ public class CarDto {
     
     private String color;
 
-    @Digits(integer = 4, fraction = 0, message = "O Ano digitado deve ter 4 digitos")
+    @NotNull(message = "O campo de ano não pode ser nulo")
+    @Min(value = 1800, message = "O ano minimo aceitavel eh 1800")
     private Integer launchYear;
 
     @DecimalMin(value = "1000", message = "O valor mínimo do carro deve ser 1000 Reais")
