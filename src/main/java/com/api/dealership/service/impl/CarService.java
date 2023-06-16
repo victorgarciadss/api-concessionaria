@@ -25,8 +25,7 @@ public class CarService implements ICarService {
 
     @Override
     public Car getCarById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCarById'");
+        return carRepository.findById(id).get();
     }
 
     @Transactional
@@ -39,8 +38,16 @@ public class CarService implements ICarService {
 
     @Override
     public Car updateCar(Long id, CarDto carDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCar'");
+        Car carToUpdate = getCarById(id);
+
+        carToUpdate.setModelName(carDto.getModelName());
+        carToUpdate.setBrand(carDto.getBrand());
+        carToUpdate.setColor(carDto.getColor());
+        carToUpdate.setLaunchYear(carDto.getLaunchYear());
+        carToUpdate.setPrice(carDto.getPrice());
+        carToUpdate.setPotency(carDto.getPotency());
+
+        return carRepository.save(carToUpdate);
     }
 
     @Override
