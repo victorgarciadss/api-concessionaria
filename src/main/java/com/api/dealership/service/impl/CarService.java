@@ -56,5 +56,12 @@ public class CarService implements ICarService {
     public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Transactional
+    public void incrementSoldAmount(Long carId){
+        Car soldCar = getCarById(carId);
+        soldCar.setSoldAmount(soldCar.getSoldAmount() + 1);
+        carRepository.save(soldCar);
+    }
     
 }
