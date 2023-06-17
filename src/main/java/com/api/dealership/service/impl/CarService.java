@@ -36,6 +36,7 @@ public class CarService implements ICarService {
         return carRepository.save(car);
     }
 
+    @Transactional
     @Override
     public Car updateCar(Long id, CarDto carDto) {
         Car carToUpdate = getCarById(id);
@@ -50,10 +51,10 @@ public class CarService implements ICarService {
         return carRepository.save(carToUpdate);
     }
 
+    @Transactional
     @Override
     public void deleteCar(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCar'");
+        carRepository.deleteById(id);
     }
     
 }
