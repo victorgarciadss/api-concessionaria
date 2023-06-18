@@ -36,15 +36,15 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public Client updateClient(ClientDto clientDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateClient'");
+    public Client updateClient(Long id, ClientDto clientDto) {
+        Client client = getClientById(id);
+        BeanUtils.copyProperties(clientDto, client);
+        return clientRepository.save(client);
     }
 
     @Override
     public void deleteClient(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteClient'");
+        clientRepository.deleteById(id);
     }
     
 }

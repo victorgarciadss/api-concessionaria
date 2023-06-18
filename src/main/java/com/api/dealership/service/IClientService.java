@@ -30,10 +30,11 @@ public interface IClientService {
 
     /**
      * Esse método atualiza um cliente no banco de dados
+     * @param id id do usário que deve ser atualizado
      * @param clientDto os dados informados pelo cliente para atualização
      * @return retorna o cliente atualizado
      */
-    public Client updateClient(ClientDto clientDto);
+    public Client updateClient(Long id, ClientDto clientDto);
 
     /**
      * Esse método exclui um usuário do sistema
