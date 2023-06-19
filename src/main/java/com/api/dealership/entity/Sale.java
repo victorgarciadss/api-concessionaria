@@ -20,14 +20,14 @@ public class Sale {
 
     }
     
-    public Sale(Long carId, Long clientId){
-        this.id.setCarId(carId);
-        this.id.setClientId(clientId);
+    public Sale(Car car, Client client){
+        this.id.setCar(car);
+        this.id.setClient(client);
     }
 
-    public Sale(Long carId, Long clientId, Date saleDate, Double value) {
-        this.id.setCarId(carId);
-        this.id.setClientId(clientId);
+    public Sale(Car car, Client client, Date saleDate, Double value) {
+        this.id.setCar(car);
+        this.id.setClient(client);
         this.saleDate = saleDate;
         this.value = value;
     }

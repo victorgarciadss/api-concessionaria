@@ -9,43 +9,43 @@ public class SalePK {
     
     @ManyToOne
     @JoinColumn(name = "car_id")
-    private Long carId;
+    private Car car;
     
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Long clientId;
+    private Client client;
 
     public SalePK() {
         
     }
 
-    public SalePK(Long carId, Long clientId) {
-        this.carId = carId;
-        this.clientId = clientId;
+    public SalePK(Car carId, Client clientId) {
+        this.car = carId;
+        this.client = clientId;
     }
 
-    public Long getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
-    public Long getClienIdt() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((carId == null) ? 0 : carId.hashCode());
-        result = prime * result + ((clientId == null) ? 0 : clientId.hashCode());
+        result = prime * result + ((car == null) ? 0 : car.hashCode());
+        result = prime * result + ((client == null) ? 0 : client.hashCode());
         return result;
     }
 
@@ -56,13 +56,13 @@ public class SalePK {
         }
         
         SalePK other = (SalePK) obj;
-        if (carId == null || other.carId != null){
+        if (car == null || other.car != null){
             return false;
         } 
-        if (clientId == null || other.clientId != null) {
+        if (client == null || other.client != null) {
             return false;
         }
-        if (carId.equals(other.carId) && clientId.equals(other.clientId)){
+        if (car.equals(other.car) && client.equals(other.client)){
             return true;
         }
             
