@@ -2,26 +2,26 @@ package com.api.dealership.dto;
 
 public class SaleDto {
     
-    private Integer carId;
-    private Integer buyerId;
+    private Long carId;
+    private Long buyerId;
 
     public SaleDto() {
 
     }
 
-    public Integer getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
-    public void setCarId(Integer carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
 
-    public Integer getBuyerId() {
+    public Long getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Integer buyerId) {
+    public void setBuyerId(Long buyerId) {
         this.buyerId = buyerId;
     }
 

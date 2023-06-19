@@ -1,10 +1,12 @@
 package com.api.dealership.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api.dealership.dto.SaleDto;
+import com.api.dealership.entity.Car;
 import com.api.dealership.entity.Sale;
 import com.api.dealership.entity.SalePK;
 import com.api.dealership.repository.CarRepository;
@@ -31,20 +33,27 @@ public class SaleService implements ISaleService {
 
     @Override
     public Sale makesSale(SaleDto saleDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makesSale'");
+        Car carSold = carRepository.findById(saleDto.getCarId()).get();
+
+        Sale sale = new Sale(saleDto.getCarId(), saleDto.getBuyerId());
+        sale.setSaleDate(new Date());
+        sale.setValue(carSold.getPrice());
+
+        return saleRepository.save(sale);
     }
 
     @Override
-    public Sale updateSale(Long id, SaleDto saleDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateSale'");
+    public Sale updateSale(SalePK id, SaleDto saleDto) {
+        Sale saleToUpdate = saleRepository.findById(id).get();
+
+        saleToUpdate.setId(new SalePK(saleDto.getCarId(), saleDto.getBuyerId()));
+
+        return saleRepository.save(saleToUpdate);
     }
 
     @Override
-    public void deleteSale(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteSale'");
+    public void deleteSale(SalePK id) {
+        saleRepository.deleteById(id);
     }
     
 }

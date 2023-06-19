@@ -34,13 +34,13 @@ public interface ISaleService {
      * @param saleDto dados que podem serem alterados
      * @return retorna a venda atualizada
      */
-    public Sale updateSale(Long id, SaleDto saleDto);
+    public Sale updateSale(SalePK id, SaleDto saleDto);
     
     /**
      * Esse método exclui uma venda do branco de dados
      * @param id da venda que será deletada
      */
-    public void deleteSale(Long id);
+    public void deleteSale(SalePK id);
 
 
 }
