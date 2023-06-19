@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.dealership.dto.ClientDto;
+import com.api.dealership.dto.SaleDto;
 import com.api.dealership.entity.Client;
 import com.api.dealership.service.impl.ClientService;
 
@@ -48,5 +49,10 @@ public class ClientController {
     @DeleteMapping(value = "/{id}")
     public void deleteClient(@PathVariable("id") Long id){
         clientService.deleteClient(id);
+    }
+
+    @PostMapping(value = "/compra")
+    public void makesPurchase(@Valid @RequestBody SaleDto saleDto){
+        clientService.buyCar(saleDto);
     }
 }

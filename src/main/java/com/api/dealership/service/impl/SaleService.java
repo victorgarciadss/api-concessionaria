@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.api.dealership.dto.SaleDto;
 import com.api.dealership.entity.Car;
@@ -15,6 +16,7 @@ import com.api.dealership.repository.ClientRepository;
 import com.api.dealership.repository.SaleRepository;
 import com.api.dealership.service.ISaleService;
 
+@Service
 public class SaleService implements ISaleService {
 
     @Autowired
@@ -51,8 +53,8 @@ public class SaleService implements ISaleService {
     @Override
     public Sale updateSale(SalePK id, SaleDto saleDto) {
         Sale saleToUpdate = saleRepository.findById(id).get();
-        Car carSoldUpdate = carRepository.findById(id.getCar().getId()).get();
-        Client buyerToUpdate = clientRepository.findById(id.getClient().getId()).get();
+        Car carSoldUpdate = carRepository.findById(saleDto.getCarId()).get();
+        Client buyerToUpdate = clientRepository.findById(saleDto.getBuyerId()).get();
 
         saleToUpdate.setId(new SalePK(carSoldUpdate, buyerToUpdate));
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dealership.dto.ClientDto;
+import com.api.dealership.dto.SaleDto;
 import com.api.dealership.entity.Client;
 import com.api.dealership.repository.ClientRepository;
 import com.api.dealership.service.IClientService;
@@ -17,6 +18,12 @@ public class ClientService implements IClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private SaleService saleService;
+
+    @Autowired
+    private CarService carService;
 
     @Override
     public List<Client> getAll() {
@@ -45,6 +52,11 @@ public class ClientService implements IClientService {
     @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
+    }
+
+    public void buyCar(SaleDto saleDto){
+        carService.incrementSoldAmount(saleDto.getCarId());
+        saleService.makesSale(saleDto);
     }
     
 }
