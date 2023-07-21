@@ -17,10 +17,11 @@ public interface ISaleService {
     
     /**
      * Esse método busca uma venda especíica pelo seu id
-     * @param id da venda desejada
+     * @param1 id do carro da venda desejada
+     * @param2 id do comprador da venda desejada
      * @return retorna uma venda através do id passado
      */
-    public Sale getSaleById(SalePK id);
+    public SoldCarDto getSaleById(Long carId, Long buyerId);
 
     /**
      * Esse método é responsável por efetivar a venda e salvá-la no banco de dados através dos dados passados

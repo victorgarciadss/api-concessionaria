@@ -38,8 +38,12 @@ public class SaleService implements ISaleService {
     }
 
     @Override
-    public Sale getSaleById(SalePK id) {
-        return saleRepository.findById(id).get();
+    public SoldCarDto getSaleById(Long carId, Long buyerId) {
+        SoldCarProjection projection = saleRepository.findById(carId, buyerId);
+
+        SoldCarDto soldCarDto = new SoldCarDto(projection);
+
+        return soldCarDto;
     }
 
     @Override

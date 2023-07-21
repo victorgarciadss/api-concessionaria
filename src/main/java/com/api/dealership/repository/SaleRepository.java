@@ -26,4 +26,20 @@ public interface SaleRepository extends JpaRepository<Sale, SalePK> {
                     """,
          nativeQuery = true)
     public List<SoldCarProjection> findAllSales();
+
+    @Query(nativeQuery = true, value = """
+            SELECT
+                clients.client_name AS clientName,
+                cars.model_name AS carName,
+                cars.brand AS carBrand,
+                s.value AS saleValue,
+                s.sale_date AS saleDate
+            FROM sales AS s
+            INNER JOIN clients
+                ON s.client_id = clients.id
+            INNER JOIN cars
+                ON s.car_id = cars.id
+            WHERE s.client_id = :clientId AND s.car_id = :carId
+            """)
+    public SoldCarProjection findById(Long carId, Long clientId);
 }
