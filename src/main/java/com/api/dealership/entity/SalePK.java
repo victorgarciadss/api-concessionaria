@@ -1,11 +1,13 @@
 package com.api.dealership.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Embeddable
-public class SalePK {
+public class SalePK implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "car_id")

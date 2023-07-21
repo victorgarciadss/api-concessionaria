@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dealership.dto.SaleDto;
+import com.api.dealership.dto.SoldCarDto;
 import com.api.dealership.entity.Car;
 import com.api.dealership.entity.Client;
 import com.api.dealership.entity.Sale;
 import com.api.dealership.entity.SalePK;
+import com.api.dealership.projections.SoldCarProjection;
 import com.api.dealership.repository.CarRepository;
 import com.api.dealership.repository.ClientRepository;
 import com.api.dealership.repository.SaleRepository;
@@ -29,8 +31,10 @@ public class SaleService implements ISaleService {
     private ClientRepository clientRepository;
 
     @Override
-    public List<Sale> getAll() {
-        return saleRepository.findAll();
+    public List<SoldCarDto> getAll() {
+        List<SoldCarProjection> projections = saleRepository.findAllSales();
+
+        return projections.stream().map(x -> new SoldCarDto(x)).toList();
     }
 
     @Override

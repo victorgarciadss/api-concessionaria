@@ -3,6 +3,7 @@ package com.api.dealership.service;
 import java.util.List;
 
 import com.api.dealership.dto.SaleDto;
+import com.api.dealership.dto.SoldCarDto;
 import com.api.dealership.entity.Sale;
 import com.api.dealership.entity.SalePK;
 
@@ -12,7 +13,7 @@ public interface ISaleService {
      * Esse método busca todas as vendas realizadas do banco de dados
      * @return a lista de vendas realizadas
      */
-    public List<Sale> getAll();
+    public List<SoldCarDto> getAll();
     
     /**
      * Esse método busca uma venda especíica pelo seu id
