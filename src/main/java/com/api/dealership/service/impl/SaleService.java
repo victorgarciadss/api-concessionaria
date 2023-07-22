@@ -11,7 +11,6 @@ import com.api.dealership.dto.SoldCarDto;
 import com.api.dealership.entity.Car;
 import com.api.dealership.entity.Client;
 import com.api.dealership.entity.Sale;
-import com.api.dealership.entity.SalePK;
 import com.api.dealership.projections.SoldCarProjection;
 import com.api.dealership.repository.CarRepository;
 import com.api.dealership.repository.ClientRepository;
@@ -58,20 +57,6 @@ public class SaleService implements ISaleService {
         return saleRepository.save(sale);
     }
 
-    @Override
-    public Sale updateSale(SalePK id, SaleDto saleDto) {
-        Sale saleToUpdate = saleRepository.findById(id).get();
-        Car carSoldUpdate = carRepository.findById(saleDto.getCarId()).get();
-        Client buyerToUpdate = clientRepository.findById(saleDto.getBuyerId()).get();
-
-        saleToUpdate.setId(new SalePK(carSoldUpdate, buyerToUpdate));
-
-        return saleRepository.save(saleToUpdate);
-    }
-
-    @Override
-    public void deleteSale(SalePK id) {
-        saleRepository.deleteById(id);
-    }
+    
     
 }
