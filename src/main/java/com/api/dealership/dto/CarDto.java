@@ -33,6 +33,19 @@ public class CarDto {
 
     }
 
+    public CarDto(
+        String modelName, String brand, String color, Integer launchYear, Double price, Integer potency
+    ){
+        this.modelName = modelName;
+        this.brand = brand;
+        this.color = color;
+        this.launchYear = launchYear;
+        this.price = price;
+        this.potency = potency;
+    }
+
+
+
     public CarDto(Car entity){
         BeanUtils.copyProperties(entity, this);
     }
