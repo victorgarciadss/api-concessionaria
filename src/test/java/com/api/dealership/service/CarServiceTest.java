@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +33,17 @@ public class CarServiceTest {
     @MockBean
     private CarRepository carRepositoryMock;
 
+    private List<Car> cars = new ArrayList<>();
+
     @BeforeEach
     public void setUp(){
+
+        cars.add(new Car(16L, "Gol", "Volkswagen", "Branco", 2015,
+        25000.00, 100, 0));
+
+        cars.add(new Car(17L, "Mobi", "Fiat", "Amarelo", 2023, 70000.00, 150, 0));
+
+
         carDto = new CarDto(
             "Uno", "Fiat", "Branco", 2010, 30000.00, 130
         );
@@ -48,13 +61,21 @@ public class CarServiceTest {
 
         Car result = carService.insertCar(carDto);
 
-
         assertNotNull(result);
         assertNotNull(result.getId()); // Verifica se o ID gerado não é nulo
         assertEquals(result.getModelName(), carDto.getModelName());
         verify(carRepositoryMock).save(any(Car.class));
         
-        
-        
+    }
+
+    @Test
+    public void shouldListAllCars(){
+
+        when(carRepositoryMock.findAll()).thenReturn(cars);
+
+        carService.getAll();
+
+        verify(carRepositoryMock).findAll();
+        verifyNoMoreInteractions(carRepositoryMock);
     }
 }
