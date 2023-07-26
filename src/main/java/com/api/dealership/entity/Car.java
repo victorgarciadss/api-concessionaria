@@ -1,5 +1,9 @@
 package com.api.dealership.entity;
 
+import org.springframework.beans.BeanUtils;
+
+import com.api.dealership.dto.CarDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +28,10 @@ public class Car {
 
     public Car() {
 
+    }
+
+    public Car(CarDto carDto){
+        BeanUtils.copyProperties(carDto, this);;
     }
 
     public Car(

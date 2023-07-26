@@ -98,10 +98,52 @@ public class CarDto {
         this.potency = potency;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((modelName == null) ? 0 : modelName.hashCode());
+        result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+        result = prime * result + ((color == null) ? 0 : color.hashCode());
+        result = prime * result + ((launchYear == null) ? 0 : launchYear.hashCode());
+        result = prime * result + ((price == null) ? 0 : price.hashCode());
+        result = prime * result + ((potency == null) ? 0 : potency.hashCode());
+        return result;
+    }
 
-    
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
 
-    
+        if (obj == null || getClass() != obj.getClass()){
+            return false;
+        }  
+            
+        CarDto other = (CarDto) obj;
+
+        if (modelName == null && other.modelName != null || !modelName.equals(other.modelName)) {
+            return false;
+        }
+        if (brand == null && other.brand != null || !brand.equals(other.brand)) {
+            return false;
+        }
+        if (color == null && other.color != null || !color.equals(other.color)) {
+            return false;
+        }
+        if (launchYear == null && other.launchYear != null || !launchYear.equals(other.launchYear)) {
+            return false;
+        }
+        if (price == null && other.price != null || !price.equals(other.price)) {
+            return false;
+        }
+        if (potency == null && other.potency != null || !potency.equals(other.potency)) {
+            return false;
+        }
+
+        return true;
+    }
 
 
 }
