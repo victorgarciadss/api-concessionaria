@@ -1,6 +1,7 @@
 package com.api.dealership.controller;
 
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -101,6 +102,34 @@ public class CarControllerTest {
         .andExpect(status().isOk());
 
         verify(carServiceMock).insertCar(eq(carDto));
+        verifyNoMoreInteractions(carServiceMock);
+    }
+
+    @Test
+    public void shouldUpdateCarInPutRequest() throws Exception{
+        Long id = mockCars.get(1).getId();
+
+        when(carServiceMock.updateCar(id, carDto)).thenReturn(carToInsert);
+
+        mockMvc.perform(put("/carros/{id}", id)
+            .contentType(APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(carDto))
+        )
+        .andExpect(status().isOk());
+
+        verify(carServiceMock).updateCar(id, carDto);
+        verifyNoMoreInteractions(carServiceMock);
+    }
+
+    @Test
+    public void shouldDeleteCarInDeleteRequest() throws Exception{
+        doNothing().when(carServiceMock).deleteCar(mockCars.get(1).getId());
+
+        mockMvc.perform(delete("/carros/{id}", mockCars.get(1).getId())
+            .contentType(APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        verify(carServiceMock).deleteCar(mockCars.get(1).getId());
         verifyNoMoreInteractions(carServiceMock);
     }
 }
