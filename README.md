@@ -2,7 +2,7 @@
 
 <p>Esse projeto é uma API de uma concessionária, no sistema há carros a serem vendidos, clientes que poderão comprar os carros, e vendas que armazenam as informações desta.</p>
 
-<h2>Funcionamento</h2>
+<h2>Descrição</h2>
 <p>
     Esse sistema é uma concessionária de carros que podem ser
     vendidos, há opção de CRUD com os carros no sistema e opção
@@ -73,3 +73,24 @@ O projeto foi pensado com conexão ao banco de dados PostgreSQL, onde será arma
 </p>
 
 <img src="src/main/resources/assets/controller.png" alt="controller">
+
+<h2>Tecnologias Utilizadas:</h2>
+
+<ul>
+    <li>Java</li>
+    <li>Spring Boot</li>
+    <li>Spring JPA</li>
+    <li>Hibernate</li>
+    <li>Maven</li>
+    <li>PostgreSQL</li>
+    <li>JUnit</li>
+    <li>Mockito</li>
+</ul>
+
+<h2>Pré-requisitos</h2>
+<ul>
+    <li>Java 11</li>
+    <li>Maven</li>
+    <li>PostgreSQL (recomendado)</li>
+    <li>Git</li>
+</ul>
