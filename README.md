@@ -94,3 +94,50 @@ O projeto foi pensado com conexão ao banco de dados PostgreSQL, onde será arma
     <li>PostgreSQL (recomendado)</li>
     <li>Git</li>
 </ul>
+
+<h2>Como executar:</h2>
+
+<p>
+    Você deve clonar o repositório através do Git, para isso crie uma pasta e abra o terminal
+    do git nessa pasta, após isso digite:
+</p>
+
+```bash
+git clone https://github.com/victorgarciadss/api-concessionaria.git
+```
+
+<p>Após isso é hora de configurar o seu banco de dados, recomendo que faça isso com o SGBD PostgreSQL, execute nele o seguinte comenando caso não tenha um banco de dados já criado:</p>
+
+```sql
+CREATE DATABASE <nome_banco_de_dados>;
+```
+
+<h3>Configuração arquivo.properties</h3>
+
+<p>Você deve criar um arquivo com a extensão <b>.properties</b>, o nome desse arquivo você define, mas o padrão é "application.properties".
+
+ Dentro do arquivo você deve inserir os códigos a seguir:
+
+ Obs: o código dentro dos caracteres <> deve ser substituido pelas suas informações e do seu banco de dados.
+</p>
+
+```properties
+spring.datasource.url=jdbc:postgresql://<nome_da_rede(localhost)>/<nome_do_banco_de_dados>
+spring.datasource.username=<seu_usuario>
+spring.datasource.password=<sua_senha>
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+```
+
+<p>Quando realizar esse procedimento, vá no arquivo principal da aplicação, que é: <b>DealershipApplication.java</b> e execute a aplicação com o botão de executar da sua IDE</p>
+
+<p>Para testar a aplicação, vá no seu navegador e digite <b>localhost:8080</b> e a API estará funcionando, lembrando que para acessar as rotas você deve adicionar o caminho da rota após esse endereço destacado. Para manipular os dados da API e fazer requições, recomendo usar o Postman</p>
+
+<h2>Testes</h2>
+
+<p>A aplicação tem a devida cobertura através de testes unitários, para realizar esses testes, foi utilizado o JUnit e o Mockito</p>
+
+
+
+
