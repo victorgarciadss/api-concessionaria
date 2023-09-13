@@ -58,10 +58,9 @@ public class CarService implements ICarService {
     }
 
     @Transactional
-    public void incrementSoldAmount(Long carId){
+    public void incrementSoldAmount(Long carId) {
         Car soldCar = getCarById(carId);
         soldCar.setSoldAmount(soldCar.getSoldAmount() + 1);
         carRepository.save(soldCar);
     }
-    
 }
