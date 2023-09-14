@@ -1,7 +1,6 @@
 package com.api.dealership.entity.logins;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +12,8 @@ import java.util.List;
 @Table(name = "logins")
 public class Login implements UserDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String password;
@@ -20,6 +21,12 @@ public class Login implements UserDetails {
 
     public Login() {
 
+    }
+
+    public Login(String userName, String password, LoginRole role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
 
     public Login(Long id, String userName, String password, LoginRole role) {
