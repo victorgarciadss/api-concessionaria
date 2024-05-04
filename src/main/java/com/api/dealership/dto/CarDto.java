@@ -19,6 +19,8 @@ public class CarDto {
     
     private String color;
 
+    private String carImage;
+
     @NotNull(message = "O campo de ano não pode ser nulo")
     @Min(value = 1800, message = "O ano minimo aceitavel eh 1800")
     private Integer launchYear;
@@ -44,7 +46,15 @@ public class CarDto {
         this.potency = potency;
     }
 
-
+    public CarDto(String modelName, String brand, String color, String carImage, Integer launchYear, Double price, Integer potency) {
+        this.modelName = modelName;
+        this.brand = brand;
+        this.color = color;
+        this.carImage = carImage;
+        this.launchYear = launchYear;
+        this.price = price;
+        this.potency = potency;
+    }
 
     public CarDto(Car entity){
         BeanUtils.copyProperties(entity, this);
@@ -72,6 +82,14 @@ public class CarDto {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getCarImage() {
+        return carImage;
+    }
+
+    public void setCarImage(String carImage) {
+        this.carImage = carImage;
     }
 
     public Integer getLaunchYear() {

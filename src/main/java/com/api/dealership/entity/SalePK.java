@@ -64,7 +64,7 @@ public class SalePK implements Serializable {
         if (client == null || other.client != null) {
             return false;
         }
-        if (car.equals(other.car) && client.equals(other.client)){
+        if (car.equals(other.getCar()) && client.equals(other.getClient())){
             return true;
         }
             

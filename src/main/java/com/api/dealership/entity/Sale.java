@@ -1,6 +1,7 @@
 package com.api.dealership.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -67,33 +68,10 @@ public class Sale {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Sale other = (Sale) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (saleDate == null) {
-            if (other.saleDate != null)
-                return false;
-        } else if (!saleDate.equals(other.saleDate))
-            return false;
-        if (value == null) {
-            if (other.value != null)
-                return false;
-        } else if (!value.equals(other.value))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sale sale = (Sale) o;
+        return Objects.equals(id, sale.id) && Objects.equals(saleDate, sale.saleDate) && Objects.equals(value, sale.value);
     }
-
-    
-
-    
 }

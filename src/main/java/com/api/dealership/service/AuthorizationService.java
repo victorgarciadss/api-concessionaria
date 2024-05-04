@@ -32,7 +32,7 @@ public class AuthorizationService implements UserDetailsService {
     public Login registerUser(RegisterDto data){
         UserDetails user = loginRepository.findByUserName(data.userName());
 
-        if(user == null){
+        if(user != null){
             throw new IllegalArgumentException("Usuário já está cadastrado");
         }
 

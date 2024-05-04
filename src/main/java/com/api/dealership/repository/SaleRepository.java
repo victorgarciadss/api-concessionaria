@@ -25,7 +25,7 @@ public interface SaleRepository extends JpaRepository<Sale, SalePK> {
             ON sales.car_id = cars.id
                     """,
          nativeQuery = true)
-    public List<SoldCarProjection> findAllSales();
+    List<SoldCarProjection> findAllSales();
 
     @Query(nativeQuery = true, value = """
             SELECT
@@ -41,5 +41,5 @@ public interface SaleRepository extends JpaRepository<Sale, SalePK> {
                 ON s.car_id = cars.id
             WHERE s.client_id = :clientId AND s.car_id = :carId
             """)
-    public SoldCarProjection findById(Long carId, Long clientId);
+    SoldCarProjection findById(Long carId, Long clientId);
 }

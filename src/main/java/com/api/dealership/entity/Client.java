@@ -97,7 +97,7 @@ public class Client {
             
         Client other = (Client) obj;
 
-        if (id == null || other.id != null) {
+        if (id == null || other.id == null) {
             return false;
         }
         if (this.id.equals(other.id)){

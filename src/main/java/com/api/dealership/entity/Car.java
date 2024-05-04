@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -21,6 +23,7 @@ public class Car {
     private String modelName;
     private String brand;
     private String color;
+    private String carImage;
     private Integer launchYear;
     private Double price;
     private Integer potency;
@@ -35,13 +38,14 @@ public class Car {
     }
 
     public Car(
-        Long id, String modelName, String brand, String color,
+        Long id, String modelName, String brand, String color, String carImage,
         Integer launchYear, Double price, Integer potency, Integer soldAmount
     ) {
         this.id = id;
         this.modelName = modelName;
         this.brand = brand;
         this.color = color;
+        this.carImage = carImage;
         this.launchYear = launchYear;
         this.price = price;
         this.potency = potency;
@@ -80,6 +84,14 @@ public class Car {
         this.color = color;
     }
 
+    public String getCarImage() {
+        return carImage;
+    }
+
+    public void setCarImage(String carImage) {
+        this.carImage = carImage;
+    }
+
     public Integer getLaunchYear() {
         return launchYear;
     }
@@ -114,39 +126,29 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Carro [id = " + id + ", nome do Modelo = " + modelName + ", marca = " + brand + ", cor ="
-         + color + ", ano de lançamento = " + launchYear + ", preço = " + price + ", potência = " + potency
-         + ", quantidade vendida = " + soldAmount + "]";
+        return "Car{" +
+                "id=" + id +
+                ", modelName='" + modelName + '\'' +
+                ", brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
+                ", carImage='" + carImage + '\'' +
+                ", launchYear=" + launchYear +
+                ", price=" + price +
+                ", potency=" + potency +
+                ", soldAmount=" + soldAmount +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(id, car.id) && Objects.equals(modelName, car.modelName) && Objects.equals(brand, car.brand) && Objects.equals(color, car.color) && Objects.equals(carImage, car.carImage) && Objects.equals(launchYear, car.launchYear) && Objects.equals(price, car.price) && Objects.equals(potency, car.potency) && Objects.equals(soldAmount, car.soldAmount);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
+        return Objects.hash(id, modelName, brand, color, carImage, launchYear, price, potency, soldAmount);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || getClass() != obj.getClass()){
-            return false;
-        }
-        Car other = (Car) obj;
-        if (this.id == null || other.id != null) {
-                return false;
-        } if (id.equals(other.id)){
-            return true;
-        }
-        return false;
-    }
-
-    
-
-    
-
-    
-
-    
-
 }

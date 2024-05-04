@@ -40,10 +40,10 @@ public class CarServiceTest {
     @BeforeEach
     public void setUp(){
 
-        cars.add(new Car(16L, "Gol", "Volkswagen", "Branco", 2015,
+        cars.add(new Car(16L, "Gol", "Volkswagen", "Branco", "aaa", 2015,
         25000.00, 100, 0));
 
-        cars.add(new Car(17L, "Mobi", "Fiat", "Amarelo", 2023, 
+        cars.add(new Car(17L, "Mobi", "Fiat", "Amarelo", "aaa", 2023,
         70000.00, 150, 0));
 
         carDto = new CarDto(
