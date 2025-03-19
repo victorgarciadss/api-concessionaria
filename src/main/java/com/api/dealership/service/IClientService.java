@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.api.dealership.dto.ClientDto;
 import com.api.dealership.entity.Client;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IClientService {
     
@@ -12,6 +14,14 @@ public interface IClientService {
      * @return lista de clientes cadastrados
      */
     public List<Client> getAll();
+
+    /**
+     * Esse método retorna parte dos clientes cadastrados por uma página
+     * @param page número da página desejada
+     * @param size tamanho da página desejada
+     * @return uma página de clientes com tamanho determinado
+     */
+    public List<Client> getClients(Integer page, Integer size);
 
     /**
      * Esse método obtém um cliente do banco de dados através do ID passado

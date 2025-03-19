@@ -3,14 +3,8 @@ package com.api.dealership.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import com.api.dealership.dto.ClientDto;
 import com.api.dealership.dto.SaleDto;
@@ -29,6 +23,11 @@ public class ClientController {
     @GetMapping
     public List<Client> getAllClients(){
         return clientService.getAll();
+    }
+
+    @GetMapping(value = "/paginado")
+    public List<Client> getClients(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        return clientService.getClients(page, size);
     }
 
     @GetMapping(value = "/{id}")
