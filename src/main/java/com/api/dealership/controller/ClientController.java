@@ -2,6 +2,7 @@ package com.api.dealership.controller;
 
 import java.util.List;
 
+import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class ClientController {
     }
 
     @GetMapping(value = "/paginado")
-    public List<Client> getClients(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public PaginationData<Client> getClients(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return clientService.getClients(page, size);
     }
 

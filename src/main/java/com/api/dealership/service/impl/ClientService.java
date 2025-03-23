@@ -2,6 +2,7 @@ package com.api.dealership.service.impl;
 
 import java.util.List;
 
+import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,10 +35,13 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public List<Client> getClients(Integer page, Integer size) {
+    public PaginationData<Client> getClients(Integer page, Integer size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Client> clients = clientRepository.findAll(pageRequest);
-        return clients.getContent();
+
+        PaginationData<Client> clientsData = new PaginationData<Client>(clients.getContent(), Math.toIntExact(clients.getTotalElements()));
+
+        return clientsData;
     }
 
     @Override

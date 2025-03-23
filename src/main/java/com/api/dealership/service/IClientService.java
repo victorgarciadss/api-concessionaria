@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.api.dealership.dto.ClientDto;
 import com.api.dealership.entity.Client;
+import com.api.dealership.pages.PaginationData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,7 +22,7 @@ public interface IClientService {
      * @param size tamanho da página desejada
      * @return uma página de clientes com tamanho determinado
      */
-    public List<Client> getClients(Integer page, Integer size);
+    public PaginationData<Client> getClients(Integer page, Integer size);
 
     /**
      * Esse método obtém um cliente do banco de dados através do ID passado
