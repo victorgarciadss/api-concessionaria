@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/cadastro").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/cadastro").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/carros").permitAll()
                         .requestMatchers(HttpMethod.POST, "/carros").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/vendas").authenticated()
