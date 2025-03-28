@@ -2,6 +2,7 @@ package com.api.dealership.controller;
 
 import com.api.dealership.config.security.TokenService;
 import com.api.dealership.dto.AuthorizationDto;
+import com.api.dealership.dto.LoginResponseDto;
 import com.api.dealership.dto.RegisterDto;
 import com.api.dealership.entity.logins.Login;
 import com.api.dealership.repository.LoginRepository;
@@ -34,9 +35,9 @@ public class AuthorizationController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<String> makeLogin(@RequestBody AuthorizationDto authorizationDto){
-        String token = authorizationService.makeLogin(authorizationDto, authenticationManager);
+    public ResponseEntity<LoginResponseDto> makeLogin(@RequestBody AuthorizationDto authorizationDto){
+        LoginResponseDto loginData = authorizationService.makeLogin(authorizationDto, authenticationManager);
 
-        return ResponseEntity.ok().body(token);
+        return ResponseEntity.ok().body(loginData);
     }
 }

@@ -2,6 +2,7 @@ package com.api.dealership.service;
 
 import com.api.dealership.config.security.TokenService;
 import com.api.dealership.dto.AuthorizationDto;
+import com.api.dealership.dto.LoginResponseDto;
 import com.api.dealership.dto.RegisterDto;
 import com.api.dealership.entity.logins.Login;
 import com.api.dealership.repository.LoginRepository;
@@ -42,10 +43,20 @@ public class AuthorizationService implements UserDetailsService {
         return loginRepository.save(newUser);
     }
 
-    public String makeLogin(AuthorizationDto auth, AuthenticationManager manager){
+    public LoginResponseDto makeLogin(AuthorizationDto auth, AuthenticationManager manager){
         UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(auth.userName(), auth.password());
         Authentication authentication = manager.authenticate(credentials);
 
-        return tokenService.generateToken((Login) authentication.getPrincipal());
+        Login user = (Login) authentication.getPrincipal();
+        String token = tokenService.generateToken(user);
+
+        String role = user.getAuthorities()
+                        .stream()
+                        .map(authority -> authority.getAuthority())
+                        .findFirst()
+                        .orElse("Sem role");
+
+
+        return new LoginResponseDto(token, role);
     }
 }
