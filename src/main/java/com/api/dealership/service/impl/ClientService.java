@@ -1,6 +1,8 @@
 package com.api.dealership.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.BeanUtils;
@@ -65,7 +67,15 @@ public class ClientService implements IClientService {
 
     @Override
     public void deleteClient(Long id) {
-        clientRepository.deleteById(id);
+        Optional<Client> clientFounded = clientRepository.findById(id);
+
+        if(clientFounded.isPresent()) {
+            clientRepository.deleteById(id);
+        }
+        else {
+            throw new NoSuchElementException("Id do cliente a ser deletado não foi encontrado");
+        }
+
     }
 
     public void buyCar(SaleDto saleDto){
