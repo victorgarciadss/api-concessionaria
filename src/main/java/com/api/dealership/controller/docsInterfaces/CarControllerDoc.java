@@ -41,7 +41,7 @@ public interface CarControllerDoc {
     @Operation(summary = "Atualiza um carro", description = "Atualiza as informações de um carro pelo seu ID")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna o carro atualiza com sucesso"),
+                    @ApiResponse(responseCode = "200", description = "Retorna o carro atualizado com sucesso"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para atualizar essa informação"),
                     @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema")
