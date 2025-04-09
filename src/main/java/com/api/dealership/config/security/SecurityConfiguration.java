@@ -1,6 +1,10 @@
 package com.api.dealership.config.security;
 
 import com.api.dealership.exceptions.CustomAccessDeniedHandler;
+import com.api.dealership.exceptions.StandardError;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.time.Instant;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -52,7 +58,22 @@ public class SecurityConfiguration {
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(customAccessDeniedHandler)
                         .authenticationEntryPoint((request, response, authException) -> {
-                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+
+                            StandardError errBody = new StandardError();
+                            errBody.setTimestamp(Instant.now());
+                            errBody.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            errBody.setError("Unauthorized");
+                            errBody.setMessage("Precisa estar logado para acessar essa rota");
+                            errBody.setPath(request.getRequestURI());
+
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json");
+
+                            ObjectMapper mapper = new ObjectMapper();
+                            mapper.registerModule(new JavaTimeModule());
+                            mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+                            mapper.writeValue(response.getWriter(), errBody);
                         })
                 )
                 .build();
@@ -67,4 +88,6 @@ public class SecurityConfiguration {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 }
