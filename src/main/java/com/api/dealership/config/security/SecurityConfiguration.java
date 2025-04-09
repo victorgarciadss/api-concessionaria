@@ -1,6 +1,7 @@
 package com.api.dealership.config.security;
 
 import com.api.dealership.exceptions.CustomAccessDeniedHandler;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,7 +49,12 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler))
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(customAccessDeniedHandler)
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                        })
+                )
                 .build();
     }
 
