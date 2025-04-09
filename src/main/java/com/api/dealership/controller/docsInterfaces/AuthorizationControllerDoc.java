@@ -33,7 +33,7 @@ public interface AuthorizationControllerDoc {
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota")
             }
     )
-    public Login registerUser(@RequestBody RegisterDto registerDto);
+    public ResponseEntity<Login> registerUser(@RequestBody RegisterDto registerDto);
 
     @Operation(summary = "Realiza login", description = "Realiza o login do funcionário")
     @ApiResponses(

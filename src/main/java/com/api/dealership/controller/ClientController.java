@@ -6,6 +6,8 @@ import com.api.dealership.controller.docsInterfaces.ClientControllerDoc;
 import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.api.dealership.dto.ClientDto;
@@ -41,8 +43,9 @@ public class ClientController implements ClientControllerDoc {
 
     @Override
     @PostMapping
-    public Client insertClient(@Valid @RequestBody ClientDto clientDto){
-        return clientService.insertClient(clientDto);
+    public ResponseEntity<Client> insertClient(@Valid @RequestBody ClientDto clientDto){
+        Client client = clientService.insertClient(clientDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(client);
     }
 
     @Override

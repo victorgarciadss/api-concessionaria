@@ -9,6 +9,7 @@ import com.api.dealership.entity.logins.Login;
 import com.api.dealership.pages.PaginationData;
 import com.api.dealership.service.impl.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,9 @@ public class AuthorizationController implements AuthorizationControllerDoc {
 
     @Override
     @PostMapping(value = "/cadastro")
-    public Login registerUser(@RequestBody RegisterDto registerDto){
-        return authorizationService.registerUser(registerDto);
+    public ResponseEntity<Login> registerUser(@RequestBody RegisterDto registerDto){
+        Login registeredEmployee = authorizationService.registerUser(registerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredEmployee);
     }
 
     @Override

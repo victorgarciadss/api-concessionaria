@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +37,7 @@ public interface CarControllerDoc {
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para inserir essa informação")
             }
     )
-    public Car createCar(@Valid @RequestBody CarDto carDto);
+    public ResponseEntity<Car> createCar(@Valid @RequestBody CarDto carDto);
 
     @Operation(summary = "Atualiza um carro", description = "Atualiza as informações de um carro pelo seu ID")
     @ApiResponses(
