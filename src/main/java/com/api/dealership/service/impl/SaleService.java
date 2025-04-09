@@ -2,6 +2,7 @@ package com.api.dealership.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,10 @@ public class SaleService implements ISaleService {
     @Override
     public SoldCarDto getSaleById(Long carId, Long buyerId) {
         SoldCarProjection projection = saleRepository.findById(carId, buyerId);
+
+        if(projection == null) {
+            throw new NoSuchElementException("Cliente ou carro não encontrados");
+        }
 
         SoldCarDto soldCarDto = new SoldCarDto(projection);
 
