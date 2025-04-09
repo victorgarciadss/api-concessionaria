@@ -20,7 +20,7 @@ public interface ClientControllerDoc {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Lista retornada corretamente"),
-                    @ApiResponse(responseCode = "403", description = "Acesso negado a essa rota")
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
             }
     )
     public List<Client> getAllClients();
@@ -30,7 +30,7 @@ public interface ClientControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),
                     @ApiResponse(responseCode = "400", description = "Erro devido a parametrização incorreta"),
-                    @ApiResponse(responseCode = "403", description = "Acesso negado a essa rota")
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
             }
     )
     public PaginationData<Client> getClients(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size);
@@ -39,7 +39,7 @@ public interface ClientControllerDoc {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Cliente retornado com sucesso pelo id"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa informação"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
                     @ApiResponse(responseCode = "404", description = "Cliente não encontrado no sistema")
             }
     )
@@ -50,7 +50,7 @@ public interface ClientControllerDoc {
             value = {
                     @ApiResponse(responseCode = "201", description = "Retorna que o cliente foi cadastrado corretamente"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota")
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
             }
     )
     public Client insertClient(@Valid @RequestBody ClientDto clientDto);
@@ -60,7 +60,7 @@ public interface ClientControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna o cliente atualizado com sucesso"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para atualizar essa informação"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
                     @ApiResponse(responseCode = "404", description = "Cliente não encontrado no sistema")
             }
     )
@@ -81,7 +81,7 @@ public interface ClientControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna que a compra do carro foi concluída corretamente"),
                     @ApiResponse(responseCode = "400", description = "Alguma validação não está sendo cumprida ou falta algum dado no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
                     @ApiResponse(responseCode = "404", description = "Cliente ou carro não estão cadastrados no sistema")
             }
     )

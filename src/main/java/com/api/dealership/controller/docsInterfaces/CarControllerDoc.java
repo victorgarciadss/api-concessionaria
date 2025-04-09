@@ -22,7 +22,7 @@ public interface CarControllerDoc {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Carro retornado com sucesso pelo id"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa informação"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
                     @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema")
             }
     )
@@ -43,7 +43,7 @@ public interface CarControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna o carro atualizado com sucesso"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para atualizar essa informação"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
                     @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema")
             }
     )
