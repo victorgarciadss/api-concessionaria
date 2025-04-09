@@ -3,8 +3,8 @@ package com.api.dealership.service;
 import java.util.List;
 
 import com.api.dealership.dto.SaleDto;
-import com.api.dealership.dto.SoldCarDto;
 import com.api.dealership.entity.Sale;
+import com.api.dealership.projections.SoldCarProjection;
 
 public interface ISaleService {
     
@@ -12,7 +12,7 @@ public interface ISaleService {
      * Esse método busca todas as vendas realizadas do banco de dados
      * @return a lista de vendas realizadas
      */
-    public List<SoldCarDto> getAll();
+    public List<SoldCarProjection> getAll();
     
     /**
      * Esse método busca uma venda especíica pelo seu id
@@ -20,7 +20,7 @@ public interface ISaleService {
      * @param2 id do comprador da venda desejada
      * @return retorna uma venda através do id passado
      */
-    public SoldCarDto getSaleById(Long carId, Long buyerId);
+    public SoldCarProjection getSaleById(Long carId, Long buyerId);
 
     /**
      * Esse método é responsável por efetivar a venda e salvá-la no banco de dados através dos dados passados

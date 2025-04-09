@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dealership.dto.SaleDto;
-import com.api.dealership.dto.SoldCarDto;
 import com.api.dealership.entity.Car;
 import com.api.dealership.entity.Client;
 import com.api.dealership.entity.Sale;
@@ -31,23 +30,19 @@ public class SaleService implements ISaleService {
     private ClientRepository clientRepository;
 
     @Override
-    public List<SoldCarDto> getAll() {
-        List<SoldCarProjection> projections = saleRepository.findAllSales();
-
-        return projections.stream().map(x -> new SoldCarDto(x)).toList();
+    public List<SoldCarProjection> getAll() {
+        return saleRepository.findAllSales();
     }
 
     @Override
-    public SoldCarDto getSaleById(Long carId, Long buyerId) {
-        SoldCarProjection projection = saleRepository.findById(carId, buyerId);
+    public SoldCarProjection getSaleById(Long carId, Long buyerId) {
+        SoldCarProjection soldCar = saleRepository.findById(carId, buyerId);
 
-        if(projection == null) {
+        if(soldCar == null) {
             throw new NoSuchElementException("Cliente ou carro não encontrados");
         }
 
-        SoldCarDto soldCarDto = new SoldCarDto(projection);
-
-        return soldCarDto;
+        return soldCar;
     }
 
     @Override

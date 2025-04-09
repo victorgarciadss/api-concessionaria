@@ -1,6 +1,6 @@
 package com.api.dealership.controller.docsInterfaces;
 
-import com.api.dealership.dto.SoldCarDto;
+import com.api.dealership.projections.SoldCarProjection;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -17,7 +17,7 @@ public interface SaleControllerDoc {
                     @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
             }
     )
-    public List<SoldCarDto> getAllSales();
+    public List<SoldCarProjection> getAllSales();
 
     @Operation(summary = "Lista venda específica", description = "Retorna uma venda pelo ID do cliente e ID do carro")
     @ApiResponses(
@@ -27,5 +27,5 @@ public interface SaleControllerDoc {
                     @ApiResponse(responseCode = "404", description = "Venda não encontrada no sistema")
             }
     )
-    public SoldCarDto getSaleById(@PathVariable("carId") Long carId, @PathVariable("buyerId") Long buyerId);
+    public SoldCarProjection getSaleById(@PathVariable("carId") Long carId, @PathVariable("buyerId") Long buyerId);
 }
