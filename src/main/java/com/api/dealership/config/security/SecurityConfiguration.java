@@ -39,11 +39,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/cadastro").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/carros").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/cadastro").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/carros").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/vendas").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/clientes/compra").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/carros/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/clientes/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/auth/paginado").hasRole("ADMIN")

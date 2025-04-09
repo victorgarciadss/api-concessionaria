@@ -1,6 +1,8 @@
 package com.api.dealership.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +56,14 @@ public class CarService implements ICarService {
     @Transactional
     @Override
     public void deleteCar(Long id) {
-        carRepository.deleteById(id);
+        Optional<Car> carFounded = carRepository.findById(id);
+
+        if(carFounded.isPresent()) {
+            carRepository.deleteById(id);
+        }
+        else {
+            throw new NoSuchElementException("Id do carro a ser apagado não foi encontrado");
+        }
     }
 
     @Transactional
