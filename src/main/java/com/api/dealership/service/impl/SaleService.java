@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.api.dealership.dto.SaleDto;
@@ -32,6 +35,16 @@ public class SaleService implements ISaleService {
     @Override
     public List<SoldCarProjection> getAll() {
         return saleRepository.findAllSales();
+    }
+
+    @Override
+    public PaginationData<SoldCarProjection> getSales(Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<SoldCarProjection> pagedData = saleRepository.findAllProjectBy(pageRequest);
+
+        PaginationData<SoldCarProjection> pagedSales = new PaginationData<>(pagedData.getContent(), Math.toIntExact(pagedData.getTotalElements()));
+
+        return pagedSales;
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.api.dealership.dto.SaleDto;
 import com.api.dealership.entity.Sale;
+import com.api.dealership.pages.PaginationData;
 import com.api.dealership.projections.SoldCarProjection;
 
 public interface ISaleService {
@@ -13,6 +14,14 @@ public interface ISaleService {
      * @return a lista de vendas realizadas
      */
     public List<SoldCarProjection> getAll();
+
+    /**
+     * Esse método retorna parte das vendas do sistema organizados em uma página
+     * @param page número da página desejada
+     * @param size tamanho da página desejada
+     * @return uma página com as vendas cadastradas no sistema com tamanho determinado
+     */
+    public PaginationData<SoldCarProjection> getSales(Integer page, Integer size);
     
     /**
      * Esse método busca uma venda especíica pelo seu id

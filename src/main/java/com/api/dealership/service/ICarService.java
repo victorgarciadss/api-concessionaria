@@ -14,6 +14,12 @@ public interface ICarService {
     */
     public List<Car> getAll();
 
+    /**
+     * Esse método retorna parte dos carros cadastrados do sistema em uma página
+     * @param page número da página desejada
+     * @param size tamanho da página desejada
+     * @return uma página de carros com tamanho determinado
+     */
     public PaginationData<Car> getCars(Integer page, Integer size);
 
     /**
