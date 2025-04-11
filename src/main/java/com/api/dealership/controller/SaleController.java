@@ -23,6 +23,7 @@ public class SaleController implements SaleControllerDoc {
         return saleService.getAll();
     }
 
+    @Override
     @GetMapping("/paginado")
     public PaginationData<SoldCarProjection> getSales(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return saleService.getSales(page, size);
