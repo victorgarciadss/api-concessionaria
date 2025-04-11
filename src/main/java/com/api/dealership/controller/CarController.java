@@ -3,20 +3,14 @@ package com.api.dealership.controller;
 import java.util.List;
 
 import com.api.dealership.controller.docsInterfaces.CarControllerDoc;
+import com.api.dealership.pages.PaginationData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.api.dealership.dto.CarDto;
 import com.api.dealership.entity.Car;
@@ -35,6 +29,12 @@ public class CarController implements CarControllerDoc {
     @GetMapping
     public List<Car> getAllCars(){
         return carService.getAll();
+    }
+
+    @Override
+    @GetMapping("/paginado")
+    public PaginationData<Car> getCars(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        return carService.getCars(page, size);
     }
 
     @Override

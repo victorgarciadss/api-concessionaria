@@ -2,6 +2,7 @@ package com.api.dealership.controller.docsInterfaces;
 
 import com.api.dealership.dto.CarDto;
 import com.api.dealership.entity.Car;
+import com.api.dealership.pages.PaginationData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,6 +20,16 @@ public interface CarControllerDoc {
     @Operation(summary = "Listar carros", description = "Lista todos os carros do banco")
     @ApiResponse(responseCode = "200", description = "Retorna a lista corretamente")
     public List<Car> getAllCars();
+
+    @Operation(summary = "Lista carros paginados", description = "Retorna uma lista páginada e parmetrizada dos carros cadastrados no sistema")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),
+                    @ApiResponse(responseCode = "400", description = "Erro devido a parametrização incorreta"),
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
+            }
+    )
+    public PaginationData<Car> getCars(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size);
 
     @Operation(summary = "Lista um carro", description = "Retorna um carro pelo seu Id")
     @ApiResponses(

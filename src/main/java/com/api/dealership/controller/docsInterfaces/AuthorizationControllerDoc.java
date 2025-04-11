@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface AuthorizationControllerDoc {
 
-    @Operation(summary = "Lista paginada de funcionários", description = "Retorna lista páginada dos funcionários cadastrados no sistema")
+    @Operation(summary = "Lista funcionários paginados", description = "Retorna lista páginada dos funcionários cadastrados no sistema")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),

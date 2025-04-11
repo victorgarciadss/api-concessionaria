@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import com.api.dealership.pages.PaginationData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,15 @@ public class CarService implements ICarService {
     @Override
     public List<Car> getAll() {
         return carRepository.findAll();
+    }
+
+    @Override
+    public PaginationData<Car> getCars(Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Car> pagedData = carRepository.findAll(pageRequest);
+
+        PaginationData<Car> pagedCars = new PaginationData<>(pagedData.getContent(), Math.toIntExact(pagedData.getTotalElements()));
+        return pagedCars;
     }
 
     @Override

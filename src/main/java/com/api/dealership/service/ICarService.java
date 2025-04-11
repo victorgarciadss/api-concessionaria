@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.api.dealership.dto.CarDto;
 import com.api.dealership.entity.Car;
+import com.api.dealership.pages.PaginationData;
 
 public interface ICarService {
     
@@ -12,6 +13,8 @@ public interface ICarService {
      * @return Lista de carros do sistema 
     */
     public List<Car> getAll();
+
+    public PaginationData<Car> getCars(Integer page, Integer size);
 
     /**
      *  Esse método busca um carro no banco de dados através de seu Id

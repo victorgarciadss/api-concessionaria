@@ -26,7 +26,7 @@ public interface ClientControllerDoc {
     )
     public List<Client> getAllClients();
 
-    @Operation(summary = "Lista páginada de clientes", description = "Retorna uma lista páginada e parâmetrizada de clientes")
+    @Operation(summary = "Lista clientes paginados", description = "Retorna uma lista páginada e parâmetrizada de clientes")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),
