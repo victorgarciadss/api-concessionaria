@@ -18,7 +18,12 @@ import java.util.List;
 public interface CarControllerDoc {
 
     @Operation(summary = "Listar carros", description = "Lista todos os carros do banco")
-    @ApiResponse(responseCode = "200", description = "Retorna a lista corretamente")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista corretamente"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+            }
+    )
     public List<Car> getAllCars();
 
     @Operation(summary = "Lista carros paginados", description = "Retorna uma lista páginada e parmetrizada dos carros cadastrados no sistema")
@@ -26,7 +31,8 @@ public interface CarControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),
                     @ApiResponse(responseCode = "400", description = "Erro devido a parametrização incorreta"),
-                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public PaginationData<Car> getCars(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size);
@@ -36,7 +42,8 @@ public interface CarControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Carro retornado com sucesso pelo id"),
                     @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
-                    @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema")
+                    @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public Car getCarById(@PathVariable("id") Long id);
@@ -46,7 +53,8 @@ public interface CarControllerDoc {
             value = {
                     @ApiResponse(responseCode = "201", description = "Retorna que o carro foi inserido corretamente"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para inserir essa informação")
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para inserir essa informação"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public ResponseEntity<Car> createCar(@Valid @RequestBody CarDto carDto);
@@ -57,7 +65,8 @@ public interface CarControllerDoc {
                     @ApiResponse(responseCode = "200", description = "Retorna o carro atualizado com sucesso"),
                     @ApiResponse(responseCode = "400", description = "Há dados faltando no corpo da requisição"),
                     @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
-                    @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema")
+                    @ApiResponse(responseCode = "404", description = "Carro não encontrado no sistema"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public Car updateCar(@PathVariable("id") Long id, @Valid @RequestBody CarDto carDto);
@@ -67,7 +76,8 @@ public interface CarControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna que o carro foi deletado com sucesso"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota"),
-                    @ApiResponse(responseCode = "404", description = "Erro devido ao id do carro não ter sido encontrado")
+                    @ApiResponse(responseCode = "404", description = "Erro devido ao id do carro não ter sido encontrado"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public void deleteCar(@PathVariable("id") Long id);

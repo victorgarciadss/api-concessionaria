@@ -16,7 +16,8 @@ public interface SaleControllerDoc {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna todas as vendas corretamente"),
-                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota")
+                    @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public List<SoldCarProjection> getAllSales();
@@ -37,7 +38,8 @@ public interface SaleControllerDoc {
             value = {
                     @ApiResponse(responseCode = "200", description = "Venda retornada com sucesso pelo id"),
                     @ApiResponse(responseCode = "401", description = "User deve se autenticar para acessar essa rota"),
-                    @ApiResponse(responseCode = "404", description = "Venda não encontrada no sistema")
+                    @ApiResponse(responseCode = "404", description = "Venda não encontrada no sistema"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public SoldCarProjection getSaleById(@PathVariable("carId") Long carId, @PathVariable("buyerId") Long buyerId);

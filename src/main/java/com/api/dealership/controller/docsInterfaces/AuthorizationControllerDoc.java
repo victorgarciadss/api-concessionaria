@@ -21,6 +21,7 @@ public interface AuthorizationControllerDoc {
                     @ApiResponse(responseCode = "200", description = "Lista retornada com tamanho e no lugar correto"),
                     @ApiResponse(responseCode = "400", description = "Erro devido a parametrização incorreta"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public PaginationData<EmployeeDto> getEmployees(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size);
@@ -30,7 +31,8 @@ public interface AuthorizationControllerDoc {
             value = {
                     @ApiResponse(responseCode = "201", description = "Retorna o funcionário cadastrado com sucesso"),
                     @ApiResponse(responseCode = "400", description = "Erro no corpo da requisição"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota")
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar essa rota"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public ResponseEntity<Login> registerUser(@RequestBody RegisterDto registerDto);
@@ -39,7 +41,8 @@ public interface AuthorizationControllerDoc {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Retorna que login foi feito corretamente"),
-                    @ApiResponse(responseCode = "400", description = "Erro no corpo da requisição")
+                    @ApiResponse(responseCode = "400", description = "Erro no corpo da requisição"),
+                    @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
             }
     )
     public ResponseEntity<LoginResponseDto> makeLogin(@RequestBody AuthorizationDto authorizationDto);
